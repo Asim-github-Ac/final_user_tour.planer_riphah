@@ -76,10 +76,11 @@ class _RegisterPageContentState extends State<RegisterPageContent> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 247, 232, 217),
       body: SingleChildScrollView(
         child: Container(
-          color: UniversalVariables.whiteColor,
-          padding: EdgeInsets.only(top: 20.0,left: 20.0,right: 20.0),
+          color: Color.fromARGB(255, 247, 232, 217),
+          padding: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
           child: Form(
             child: buildForm(),
           ),
@@ -88,39 +89,47 @@ class _RegisterPageContentState extends State<RegisterPageContent> {
     );
   }
 
-  buildForm(){
+  buildForm() {
     return Column(
-      children:[
-        SizedBox(height:20.0),
+      children: [
+        SizedBox(height: 20.0),
         Hero(
           tag: 'hero',
           child: CircleAvatar(
             backgroundColor: Colors.transparent,
             radius: 100.0,
-            child: Image.network("https://img.freepik.com/free-vector/detailed-travel-logo_23-2148616611.jpg?w=2000"),
+            child: Image.asset(
+              "assets/images/logo.jpg",
+            ),
           ),
         ),
-        SizedBox(height:20.0),
+        SizedBox(height: 20.0),
         TextFormField(
           controller: textname,
           decoration: InputDecoration(
             hintText: 'Name',
-            prefixIcon: Icon(Icons.email),
+            prefixIcon: Icon(Icons.person),
             contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+            border:
+            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
           ),
         ),
-        SizedBox(height: 10,),
+        SizedBox(
+          height: 10,
+        ),
         TextFormField(
           controller: textEmail,
           decoration: InputDecoration(
             hintText: 'Email',
             prefixIcon: Icon(Icons.email),
             contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+            border:
+            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
           ),
         ),
-        SizedBox(height: 10,),
+        SizedBox(
+          height: 10,
+        ),
         TextFormField(
           maxLength: 10,
           inputFormatters: <TextInputFormatter>[
@@ -131,27 +140,34 @@ class _RegisterPageContentState extends State<RegisterPageContent> {
             hintText: 'Phone',
             prefixIcon: Icon(Icons.phone),
             contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+            border:
+            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
           ),
         ),
-        SizedBox(height: 10,),
+        SizedBox(
+          height: 10,
+        ),
         TextFormField(
           controller: textcity,
           decoration: InputDecoration(
             hintText: 'City',
             prefixIcon: Icon(Icons.email),
             contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+            border:
+            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
           ),
         ),
-        SizedBox(height: 10,),
+        SizedBox(
+          height: 10,
+        ),
         TextFormField(
           controller: textPasswordController,
           decoration: InputDecoration(
             hintText: 'Password',
             prefixIcon: Icon(Icons.password),
             contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+            border:
+            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
           ),
         ),
         SizedBox(
@@ -161,38 +177,58 @@ class _RegisterPageContentState extends State<RegisterPageContent> {
           width: double.infinity,
           child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(UniversalVariables.orangeColor),
+              backgroundColor:
+              MaterialStateProperty.all(UniversalVariables.yellowColor),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0),)
-              ),),
-            onPressed: (){
-
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  )),
+            ),
+            onPressed: () {
               SignUp();
             },
-            child: Text("Register",style:TextStyle(color: UniversalVariables.whiteColor,fontSize: 24)),
-          ) ,
+            child: Text("Register",
+                style: TextStyle(
+                    color: UniversalVariables.whiteColor, fontSize: 24)),
+          ),
         ),
-        TextButton.icon(onPressed:(){gotoLoginPage();}, icon: Icon(Icons.person_add), label: Text("Already Login ? Click Here..",style:TextStyle(color: Colors.black45, fontWeight: FontWeight.bold)),)
+        TextButton.icon(
+          onPressed: () {
+            gotoLoginPage();
+          },
+          icon: Icon(
+            Icons.person_add,
+            color: Color.fromARGB(255, 8, 0, 0),
+          ),
+          label: Text("Already Login ? Click Here..",
+              style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xffFDC858),
+                  fontWeight: FontWeight.bold)),
+        )
       ],
     );
   }
 
   gotoLoginPage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPageContent()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => LoginPageContent()));
   }
 
   Future<void> gotoHomePage() async {
     CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-      // Call the user's CollectionReference to add a new user
-    users.add({
-        'full_name': textname.text.toString(), // John Doe
-        'email': textEmail.text.toString(), // Stokes and Sons
-        'phone': textPhoneController.text.toString(),
-        'city': textcity.text.toString()// 42
-      })
-          .then((value) => print("User Added"))
-          .catchError((error) => print("Failed to add user: $error"));
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AgreementCheck()));
-    }
+    // Call the user's CollectionReference to add a new user
+    users
+        .add({
+      'full_name': textname.text.toString(), // John Doe
+      'email': textEmail.text.toString(), // Stokes and Sons
+      'phone': textPhoneController.text.toString(),
+      'city': textcity.text.toString() // 42
+    })
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => AgreementCheck()));
+  }
 }

@@ -64,12 +64,12 @@ class _LoginPageContentState extends State<LoginPageContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 247, 232, 217),
       body: SingleChildScrollView(
         child: Container(
-          color: UniversalVariables.whiteColor,
-          padding: EdgeInsets.only(top: 20.0,left: 20.0,right: 20.0),
+          color: Color.fromARGB(255, 247, 232, 217),
+          padding: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
           child: Form(
-
             child: buildForm(),
           ),
         ),
@@ -77,28 +77,29 @@ class _LoginPageContentState extends State<LoginPageContent> {
     );
   }
 
-
-  buildForm(){
+  buildForm() {
     return Column(
-      children:[
-        SizedBox(height:20.0),
+      children: [
+        SizedBox(height: 80.0),
         Hero(
           tag: 'hero',
           child: CircleAvatar(
             backgroundColor: Colors.transparent,
             radius: 100.0,
-            child: Image.network("https://img.freepik.com/free-vector/detailed-travel-logo_23-2148616611.jpg?w=2000"),
+            child: Image.asset(
+              "assets/images/logo.jpg",
+            ),
           ),
         ),
-        SizedBox(height:20.0),
+        SizedBox(height: 20.0),
         TextFormField(
-
           controller: textNameController,
           decoration: InputDecoration(
             hintText: 'Email',
             prefixIcon: Icon(Icons.email),
             contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+            border:
+            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
           ),
         ),
         SizedBox(
@@ -110,34 +111,56 @@ class _LoginPageContentState extends State<LoginPageContent> {
             hintText: 'Password',
             prefixIcon: Icon(Icons.password_outlined),
             contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+            border:
+            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
           ),
         ),
-        SizedBox(height:50.0),
+        SizedBox(height: 40.0),
         SizedBox(
           width: double.infinity,
           child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(UniversalVariables.orangeColor),
+              backgroundColor:
+              MaterialStateProperty.all(UniversalVariables.yellowColor),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0),)
-              ),),
-            onPressed: (){
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  )),
+            ),
+            onPressed: () {
               LoginNow();
             },
-            child: Text("Login",style:TextStyle(color: UniversalVariables.whiteColor,fontSize: 24)),
-          ) ,
+            child: Text("Login",
+                style: TextStyle(
+                    color: UniversalVariables.whiteColor, fontSize: 24)),
+          ),
         ),
-        TextButton.icon(onPressed:(){gotoRegisterPage();}, icon: Icon(Icons.person_add), label: Text("New User ? Click Here..",style:TextStyle(color: Colors.black45, fontWeight: FontWeight.bold)),)
+        TextButton.icon(
+          onPressed: () {
+            gotoRegisterPage();
+          },
+          icon: Icon(
+            Icons.person_add,
+            color: Color.fromARGB(255, 8, 0, 0),
+          ),
+          label: Text("New User ? Click Here..",
+              style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xffFDC858),
+                  fontWeight: FontWeight.bold)),
+        )
       ],
     );
   }
 
   gotoHomePage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => MyHomePage()));
   }
 
   gotoRegisterPage() {
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> RegisterPageContent()));
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => RegisterPageContent()));
   }
+
 }

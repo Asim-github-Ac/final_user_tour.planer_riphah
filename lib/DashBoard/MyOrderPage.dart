@@ -14,7 +14,7 @@ class _MyOrderPageState extends State<MyOrderPage> {
   String name= "";
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('Tours').where("placename",isGreaterThanOrEqualTo: name.toString()).snapshots();
+    final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('Bookedtour').where("username",isGreaterThanOrEqualTo: name.toString()).snapshots();
     return Scaffold(
 
       appBar: AppBar(

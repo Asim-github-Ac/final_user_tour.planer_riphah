@@ -28,92 +28,104 @@ class _BookToursState extends State<BookTours> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: UniversalVariables.orangeColor,
-        title: Text("Book Tour"),),
-        body: SingleChildScrollView(
-        child: Container(
-        color: UniversalVariables.whiteColor,
-        padding: EdgeInsets.only(top: 20.0,left: 20.0,right: 20.0),
-    child: Form(
-    child: buildForm(),),
-        )
-    ),
-    );
-  }
-  buildForm(){
-    return Column(
-      children:[
-        SizedBox(height: 15,),
-        Container(height: 100,
-          child: Image.network("https://www.bookyourtour.me/images/book-your-tour/BOOK-YOUR-TOUR-logo-color.png"),
-        ),
-        SizedBox(height:20.0),
-        TextFormField(
-          controller: tvname,
-          decoration: InputDecoration(
-            hintText: 'Name',
-            prefixIcon: Icon(Icons.person),
-            contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+        backgroundColor: Color.fromARGB(255, 247, 232, 217),
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Color.fromARGB(255, 127, 106, 232),
+          title: Text(
+            "Please Book Your Tour",
+            style: TextStyle(
+              color: UniversalVariables.yellowColor,
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
-        SizedBox(height: 15,),
-        TextFormField(
-          controller: email,
-          decoration: InputDecoration(
-            hintText: 'Email',
-            prefixIcon: Icon(Icons.email),
-            contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-          ),
-        ),
-        SizedBox(height: 15,),
-
-        TextFormField(
-          controller: address,
-          decoration: InputDecoration(
-            hintText: 'Enter Address',
-            prefixIcon: Icon(Icons.location_off),
-            contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-          ),
-        ),
-        SizedBox(height: 15,),
-        TextFormField(
-          controller: phonenumber,
-          decoration: InputDecoration(
-            hintText: 'Phone Number',
-            prefixIcon: Icon(Icons.phone),
-            contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-          ),
-        ),
-        SizedBox(
-          height: 15,
-        ),
-        SizedBox(
-          width: double.infinity,
-          child: TextButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(UniversalVariables.orangeColor),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0),)
-              ),),
-            onPressed: (){
-              String username= tvname.text.toString();
-              String useremail= email.text.toString();
-              String useraddress= address.text.toString();
-              String userphone= phonenumber.text.toString();
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>AddPayment(url:'${widget.url}',place: '${widget.place}',desplace: '${widget.desplace}',expense: '${widget.expense}',date: '${widget.date}',stay: '${widget.stay}',city: '${widget.city}',username: username,useremail: useremail,useraddress: useraddress,userphone: userphone,)
-              )
-              );
-            },
-            child: Text("Confirm Now",style:TextStyle(color: UniversalVariables.whiteColor,fontSize: 24)),
-          ) ,
-        ),
-       // TextButton.icon(onPressed:(){gotoLoginPage();}, icon: Icon(Icons.person_add), label: Text("Already Login ? Click Here..",style:TextStyle(color: Colors.black45, fontWeight: FontWeight.bold)),)
-      ],
-    );
+        body: Card(
+            color: Color.fromARGB(255, 247, 232, 217),
+            elevation: 10,
+            // margin: EdgeInsets.all(10),
+            child: SingleChildScrollView(
+              child: Column(
+                //mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(height: 360, child: Image.network('${widget.url}')),
+                  SizedBox(
+                    height: 18,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Place Name: ",
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 127, 106, 232),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text('${widget.place}')
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Tour Expense: ",
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 127, 106, 232),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text('${widget.expense}')
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12.0),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(55, 12, 0, 0),
+                          child: Center(
+                            child: Text(
+                              "Are You Sure To Confirm Tour ",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 127, 106, 232),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  new SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: UniversalVariables.yellowColor,
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      maximumSize: const Size(200, 45),
+                      minimumSize: const Size(200, 45),
+                    ),
+                    child: const Text(
+                      "Confirm Tour",
+                      style:
+                      TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () {},
+                  ),
+                  SizedBox(
+                    height: 185,
+                  )
+                ],
+              ),
+            )));
   }
 }

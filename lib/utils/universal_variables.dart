@@ -18,12 +18,12 @@ import 'package:flutter/material.dart';
 
 class UniversalVariables {
   static final Color orangeColor = Colors.orange;
+  static final Color yellowColor = Color(0xffFDC858);
   static final Color orangeAccentColor = Colors.orangeAccent;
   static final Color blackColor = Color(0xff19191b);
   static final Color whiteColor = Colors.white;
   static final Color whiteLightColor = Colors.white10;
-   static final Color amberColor =Colors.amber;
-
+  static final Color amberColor = Colors.amber;
 
   static final Color greyColor = Color(0xff8f8f8f);
   static final Color userCircleBackground = Color(0xff2b2b33);
